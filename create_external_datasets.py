@@ -386,7 +386,7 @@ def load_train_validation_test(dataset_name, data_dir):
         'jungle': 7,
         'wine': 12,
         'calhousing': 9,
-        'compas': 5
+        'compas': 6
     }
     assert dataset_name in dataset_specs.keys() and len(dataset.columns) == dataset_specs[dataset_name]
 
