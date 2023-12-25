@@ -665,7 +665,7 @@ template_config_compas = {
         'juv_fel_count': lambda x: f"{int(x)}"
     }
 }
-tempalate_compas = 'The Age is ${age}. ' \
+template_compas = 'The Age is ${age}. ' \
                 'The Race is ${race}. ' \
                 'The Sex is ${sex}. ' \
                 'The Number of prior convictions is ${priors_count}. ' \
