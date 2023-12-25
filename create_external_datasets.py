@@ -365,9 +365,9 @@ def load_train_validation_test(dataset_name, data_dir):
         assert len(dataset_train) + len(dataset_valid) + len(dataset_test) == original_size
     
     elif dataset_name == "compas":
-        dataset = pd.read_csv(data_dir / 'compas-scores-two-years.csv')
+        dataset = pd.read_csv(data_dir / 'compas-scores-two-years.csv', delimiter=';')
         original_size = len(dataset)
-        dataset = dataset.rename(columns={'is_recid': 'label'})
+        dataset = dataset.rename(columns={'two_year_recid': 'label'})
         dataset_train, dataset_valid, dataset_test = train_validation_test_split(dataset)
         assert len(dataset_train) + len(dataset_valid) + len(dataset_test) == original_size
 
