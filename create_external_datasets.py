@@ -41,6 +41,7 @@ cat_idx_dict = {
     "bank": [1,2,3,4,6,7,8,10,15],
     "jungle": [],
     "calhousing": [],
+    "compas": []
 }
 bin_num = 10
 
@@ -50,10 +51,10 @@ def main():
     logging.basicConfig(level=logging.INFO)
 
     # Configuration
-    data_dir = Path("/root/TabLLM/datasets")
+    data_dir = Path("datasets")
     data_dir = data_dir / args.dataset
     temp_output = 'dataset-generation-' + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    output_dir = Path("/root/TabLLM/datasets_serialized") / temp_output
+    output_dir = Path("datasets_serialized") / temp_output
     if not args.debug:
         os.mkdir(output_dir)
     logger.info(f"Generate dataset {args.dataset}.")
@@ -362,6 +363,13 @@ def load_train_validation_test(dataset_name, data_dir):
         dataset = dataset.rename(columns={'Outcome': 'label'})
         dataset_train, dataset_valid, dataset_test = train_validation_test_split(dataset)
         assert len(dataset_train) + len(dataset_valid) + len(dataset_test) == original_size
+    
+    elif dataset_name == "compas":
+        dataset = pd.read_csv(data_dir / 'compas-scores-two-years.csv')
+        original_size = len(dataset)
+        dataset = dataset.rename(columns={'is_recid': 'label'})
+        dataset_train, dataset_valid, dataset_test = train_validation_test_split(dataset)
+        assert len(dataset_train) + len(dataset_valid) + len(dataset_test) == original_size
 
     else:
         raise ValueError("Dataset not found")
@@ -377,7 +385,8 @@ def load_train_validation_test(dataset_name, data_dir):
         'bank': 17,
         'jungle': 7,
         'wine': 12,
-        'calhousing': 9
+        'calhousing': 9,
+        'compas': 5
     }
     assert dataset_name in dataset_specs.keys() and len(dataset.columns) == dataset_specs[dataset_name]
 

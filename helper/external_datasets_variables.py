@@ -652,3 +652,23 @@ template_wine_list_values = '${fixed_acidity}\n' \
 template_config_wine_list_values = template_config_wine_list
 template_wine_list_shuffled = template_wine_list
 template_config_wine_list_shuffled = template_config_wine_list
+
+########################################################################################################################
+# compas
+########################################################################################################################
+template_config_compas = {
+    'pre': {
+        'age': lambda x: f"{int(x)}",
+        'race': lambda r: None if r.lower() == 'other' else r,
+        'sex': lambda x: x.lower(),
+        'priors_count': lambda x: f"{int(x)}",
+        'juv_fel_count': lambda x: f"{int(x)}"
+    }
+}
+tempalate_compas = 'The Age is ${age}. ' \
+                'The Race is ${race}. ' \
+                'The Sex is ${sex}. ' \
+                'The Number of prior convictions is ${priors_count}. ' \
+                'The Number of juvenile felony convictions is ${juv_fel_count}. '
+template_config_compas_list = template_config_compas
+                
