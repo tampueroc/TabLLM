@@ -671,4 +671,8 @@ template_compas = 'The Age is ${age}. ' \
                 'The Number of prior convictions is ${priors_count}. ' \
                 'The Number of juvenile felony convictions is ${juv_fel_count}. '
 template_config_compas_list = template_config_compas
-                
+template_compas_list = '- Age: ${age}\n' \
+                        '- Race: ${race}\n' \
+                        '- Sex: ${sex}\n' \
+                        '- Number of prior convictions: ${priors_count}\n' \
+                        '- Number of juvenile felony convictions: ${juv_fel_count}'
